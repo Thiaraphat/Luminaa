@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumina Electric Air - Anime Style Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0b10;
+      --card-glass: rgba(18, 22, 36, 0.78);
+      --neon-cyan: #00f0ff;
+      --neon-pink: #ff0055;
+      --neon-purple: #9d4edd;
+      --neon-gold: #ffd700;
+      --text-white: #ffffff;
+      --border-glow: rgba(0, 240, 255, 0.45);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Kanit', sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      background: var(--bg-dark);
+      color: var(--text-white);
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(0, 240, 255, 0.1) 0%, transparent 35%),
+        radial-gradient(circle at 85% 75%, rgba(255, 0, 85, 0.09) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(157, 78, 221, 0.05) 0%, transparent 50%);
+    }
+
+    /* Floating particles */
+    .particle {
+      position: fixed;
+      pointer-events: none;
+      border-radius: 50%;
+      z-index: 0;
+      animation: floatParticle 8s infinite ease-in-out;
+    }
+    @keyframes floatParticle {
+      0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+      50% { transform: translateY(-40px) scale(1.3); opacity: 0.9; }
+    }
+    .sparkle {
+      position: fixed;
+      background: #fff;
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      pointer-events: none;
+      animation: floatSparkle 5s infinite ease-in-out;
+      z-index: 0;
+    }
+    @keyframes floatSparkle {
+      0%, 100% { transform: scale(0.5) rotate(0deg); opacity: 0.25; }
+      50% { transform: scale(1.3) rotate(180deg); opacity: 1; filter: drop-shadow(0 0 10px var(--neon-cyan)); }
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 11, 16, 0.92);
+      backdrop-filter: blur(16px);
+      z-index: 1000;
+      border-bottom: 2px solid var(--neon-cyan);
+      padding: 14px 20px;
+      box-shadow: 0 4px 30px rgba(0, 240, 255, 0.15);
+    }
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--text-white);
+      letter-spacing: 2px;
+    }
+    .logo span { color: var(--neon-cyan); text-shadow: 0 0 12px var(--neon-cyan); }
+    .nav-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+    .nav-btn {
+      background: rgba(0, 240, 255, 0.06);
+      color: var(--text-white);
+      border: 1px solid var(--neon-cyan);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+    }
+    .nav-btn:hover, .nav-btn.active {
+      background: var(--neon-cyan);
+      color: var(--bg-dark);
+      box-shadow: 0 0 20px var(--neon-cyan);
+      transform: translateY(-2px);
+    }
+
+    .page {
+      display: none;
+      max-width: 1200px;
+      margin: 28px auto;
+      padding: 16px 20px 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .page.active { display: block; animation: fadeIn 0.5s ease; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-card {
+      background: var(--card-glass);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border-glow);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+      transition: box-shadow 0.35s ease;
+    }
+    .section-card:hover {
+      box-shadow: 0 8px 40px rgba(0, 240, 255, 0.12);
+    }
+
+    h1 { 
+      font-size: 2.1rem; 
+      text-align: center; 
+      color: var(--neon-cyan); 
+      text-shadow: 0 0 14px var(--neon-cyan); 
+      margin-bottom: 8px; 
+      font-family: 'Orbitron', 'Kanit', sans-serif;
+    }
+    .subtitle {
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 24px;
+      font-size: 1.02rem;
+      line-height: 1.7;
+      max-width: 880px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h2 { 
+      font-size: 1.4rem; 
+      color: var(--neon-cyan); 
+      border-bottom: 2px solid var(--neon-cyan); 
+      padding-bottom: 8px; 
+      margin-bottom: 16px; 
+    }
+    h3 { color: var(--neon-cyan); margin-bottom: 8px; font-size: 1.12rem; }
+    p { line-height: 1.75; margin-bottom: 10px; }
+
+    .scroll-btn {
+      background: linear-gradient(135deg, var(--neon-cyan), #00c4d4);
+      color: var(--bg-dark);
+      border: none;
+      padding: 11px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 8px 0;
+      transition: all 0.35s ease;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
+    }
+    .scroll-btn:hover { 
+      box-shadow: 0 6px 25px rgba(0, 240, 255, 0.5); 
+      transform: translateY(-3px); 
+    }
+    .center-btn { display: flex; justify-content: center; margin: 14px 0; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 22px;
+      border-radius: 12px;
+      border-left: 4px solid var(--neon-cyan);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,240,255,0.08), transparent);
+      transition: left 0.5s ease;
+    }
+    .card:hover {
+      background: rgba(0, 240, 255, 0.07);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.18);
+      transform: translateY(-4px);
+    }
+    .card:hover::before { left: 100%; }
+
+    .detail-box {
+      background: rgba(0,0,0,0.32);
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(255,255,255,0.07);
+      transition: border-color 0.3s;
+    }
+    .detail-box:hover { border-color: rgba(0,240,255,0.3); }
+    .step-list { margin-left: 22px; margin-bottom: 10px; }
+    .step-list li { margin-bottom: 6px; line-height: 1.65; }
+    .note {
+      font-size: 0.88rem;
+      color: #a0a0a0;
+      border-left: 3px solid var(--neon-pink);
+      padding-left: 12px;
+      margin-top: 10px;
+    }
+
+    /* Hero */
+    .hero-box {
+      text-align: center;
+      padding: 50px 24px;
+      margin-bottom: 28px;
+      background: linear-gradient(135deg, rgba(0,240,255,0.1), rgba(157,78,221,0.08));
+      border: 1px solid var(--border-glow);
+      border-radius: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-box::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 18px;
+      background: linear-gradient(120deg, var(--neon-cyan), transparent 40%, var(--neon-purple), transparent 70%);
+      z-index: -1;
+      opacity: 0.4;
+      animation: borderGlow 6s linear infinite;
+    }
+    @keyframes borderGlow {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.4rem;
+      font-weight: 900;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 25px var(--neon-cyan), 0 0 50px rgba(0,240,255,0.4);
+      letter-spacing: 8px;
+      margin-bottom: 4px;
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { text-shadow: 0 0 25px var(--neon-cyan), 0 0 50px rgba(0,240,255,0.3); }
+      50% { text-shadow: 0 0 35px var(--neon-cyan), 0 0 70px rgba(0,240,255,0.55); }
+    }
+    .hero-sub {
+      font-size: 1.35rem;
+      color: #ccc;
+      margin-bottom: 10px;
+      letter-spacing: 4px;
+    }
+    .hero-tag {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 6px 18px;
+      border: 1px solid var(--neon-cyan);
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: var(--neon-cyan);
+      background: rgba(0,240,255,0.08);
+    }
+
+    /* Feature icons row */
+    .feature-row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin: 30px 0 10px;
+    }
+    .feature-item {
+      text-align: center;
+      width: 110px;
+    }
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      background: rgba(0,240,255,0.1);
+      border: 2px solid var(--neon-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 0 20px rgba(0,240,255,0.25);
+      transition: all 0.35s;
+    }
+    .feature-item:hover .feature-icon {
+      transform: scale(1.12);
+      box-shadow: 0 0 30px rgba(0,240,255,0.45);
+    }
+    .feature-item span { font-size: 0.85rem; color: #bbb; }
+
+    @media (max-width: 850px) {
+      .hero-title { font-size: 2.2rem; letter-spacing: 4px; }
+      h1 { font-size: 1.55rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Particles & Sparkles -->
+  <div class="sparkle" style="top:12%; left:8%; width:11px; height:11px;"></div>
+  <div class="sparkle" style="top:22%; left:88%; width:14px; height:14px; animation-delay:1s;"></div>
+  <div class="sparkle" style="top:70%; left:78%; width:9px; height:9px; animation-delay:2s;"></div>
+  <div class="sparkle" style="top:48%; left:4%; width:8px; height:8px; animation-delay:0.7s;"></div>
+  <div class="sparkle" style="top:85%; left:30%; width:10px; height:10px; animation-delay:1.8s;"></div>
+  <div class="particle" style="top:18%; left:45%; width:6px; height:6px; background:var(--neon-cyan); animation-delay:0.5s;"></div>
+  <div class="particle" style="top:60%; left:20%; width:5px; height:5px; background:var(--neon-pink); animation-delay:1.2s;"></div>
+  <div class="particle" style="top:35%; left:70%; width:7px; height:7px; background:var(--neon-purple); animation-delay:2.1s;"></div>
+  <div class="particle" style="top:80%; left:55%; width:4px; height:4px; background:var(--neon-cyan); animation-delay:0.3s;"></div>
+
+  <header>
+    <nav>
+      <div class="logo">⚡ LUMINA <span>SYSTEM</span></div>
+      <div class="nav-buttons">
+        <button class="nav-btn active" onclick="switchPage('page1', this)">หน้าหลัก</button>
+        <button class="nav-btn" onclick="switchPage('page2', this)">คู่มือริชเมนูไลน์</button>
+        <button class="nav-btn" onclick="switchPage('page3', this)">คู่มือแอป Lumina</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== PAGE 1 ==================== -->
+  <div id="page1" class="page active">
+    <div class="hero-box">
+      <div class="hero-title">LUMINA</div>
+      <div class="hero-sub">ELECTRIC AIR</div>
+      <p style="color:#aaa; font-size:1.05rem;">ระบบบริการด้านเครื่องปรับอากาศ</p>
+      <div class="hero-tag">✨ Smart • Simple • Seamless</div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-item">
+        <div class="feature-icon">💬</div>
+        <span>ติดต่อง่าย</span>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">📱</div>
+        <span>แอปครบวงจร</span>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">❄️</div>
+        <span>ดูแลแอร์</span>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🛠️</div>
+        <span>ติดตามบริการ</span>
+      </div>
+    </div>
+
+    <div class="center-btn">
+      <button class="scroll-btn" onclick="scrollToBottom('page1')">⬇️ เลื่อนลงไปข้างล่าง</button>
+    </div>
+
+    <div class="section-card">
+      <h2>✨ รู้จัก Lumina Electric Air</h2>
+      <p><strong>Lumina Electric Air</strong> คือระบบบริการด้านเครื่องปรับอากาศที่ออกแบบมาเพื่อช่วยให้ลูกค้าเข้าถึงข้อมูล ติดต่อสอบถาม และใช้บริการต่าง ๆ ได้สะดวกมากยิ่งขึ้น</p>
+      <p>Lumina เชื่อมต่อการใช้งานผ่าน <strong>LINE Rich Menu</strong> และ <strong>Lumina Application</strong> โดยออกแบบให้ใช้งานง่าย เข้าใจได้ไม่ซับซ้อน และช่วยให้ลูกค้าสามารถเข้าถึงบริการของร้านได้อย่างเป็นระบบ</p>
+    </div>
+
+    <div class="section-card">
+      <h2>🌟 จุดเด่นของ Lumina</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>💬 ติดต่อสะดวก</h3>
+          <p>เข้าถึงช่องทางติดต่อและบริการของ Lumina ได้ง่ายผ่าน LINE Rich Menu</p>
+        </div>
+        <div class="card">
+          <h3>📱 ใช้งานง่าย</h3>
+          <p>Lumina Application รวบรวมฟังก์ชันสำคัญไว้ในรูปแบบที่เข้าใจง่าย และสะดวกต่อการใช้งาน</p>
+        </div>
+        <div class="card">
+          <h3>❄️ ดูแลเครื่องปรับอากาศ</h3>
+          <p>ช่วยให้ลูกค้าเข้าถึงข้อมูลและบริการที่เกี่ยวข้องกับเครื่องปรับอากาศได้อย่างเป็นระบบ</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <h2>💡 Lumina มีอะไรให้ลูกค้าใช้งาน?</h2>
+      <p style="margin-bottom:16px; color:#bbb;">ระบบนี้สามารถแยกย่อยเป็น 4 ส่วนหลัก</p>
+      <div class="grid-4">
+        <div class="card">
+          <h3>💬 ติดต่อและสอบถาม</h3>
+          <p>ลูกค้าสามารถเข้าถึงช่องทางสำหรับติดต่อร้านและสอบถามข้อมูลที่ต้องการได้สะดวกขึ้น</p>
+        </div>
+        <div class="card">
+          <h3>📱 Lumina Application</h3>
+          <p>แอปสำหรับลูกค้าที่รวบรวมฟังก์ชันสำคัญไว้ในพื้นที่เดียว ช่วยให้เข้าถึงข้อมูลและบริการได้ง่ายขึ้น</p>
+        </div>
+        <div class="card">
+          <h3>🏠 ข้อมูลบ้านและแอร์</h3>
+          <p>ช่วยให้ลูกค้าสามารถเข้าถึงข้อมูลที่เกี่ยวข้องกับบ้านและเครื่องปรับอากาศของตนเองภายในระบบ</p>
+        </div>
+        <div class="card">
+          <h3>🛠️ การบริการ</h3>
+          <p>ช่วยให้ข้อมูลที่เกี่ยวข้องกับการรับบริการสามารถเข้าสู่กระบวนการจัดการของร้านและติดตามสถานะได้อย่างเป็นระบบ</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card" style="text-align:center;">
+      <h2>🚀 พร้อมเริ่มต้นใช้งาน</h2>
+      <p style="max-width:600px; margin:0 auto 16px;">เปิด LINE ของร้าน → กด Rich Menu หรือดาวน์โหลด Lumina Application เพื่อเริ่มต้นใช้งานได้ทันที</p>
+      <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <button class="scroll-btn" onclick="switchPage('page2', document.querySelectorAll('.nav-btn')[1])">ดูคู่มือ Rich Menu</button>
+        <button class="scroll-btn" style="background:linear-gradient(135deg,var(--neon-pink),var(--neon-purple));" onclick="switchPage('page3', document.querySelectorAll('.nav-btn')[2])">ดูคู่มือแอป</button>
+      </div>
+    </div>
+
+    <div class="center-btn" id="p1-bottom">
+      <button class="scroll-btn" onclick="scrollToTop()">⬆️ เลื่อนขึ้นไปข้างบน</button>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 2 ==================== -->
+  <div id="page2" class="page">
+    <h1>คู่มือการใช้งาน LINE RICH MENU</h1>
+    <p class="subtitle">LINE Rich Menu ของ Lumina Electric Air ถูกออกแบบเพื่อช่วยให้ลูกค้าสามารถเข้าถึงบริการ ข้อมูล สิทธิประโยชน์ และช่องทางการติดต่อของร้านได้อย่างสะดวก โดยแบ่งการใช้งานออกเป็น 6 เมนูหลัก</p>
+
+    <div class="center-btn">
+      <button class="scroll-btn" onclick="scrollToBottom('page2')">⬇️ เลื่อนลงล่างสุด</button>
+    </div>
+
+    <div class="section-card">
+      <div class="detail-box">
+        <h3>1. 📅 จองคิว / สอบถามแอดมิน</h3>
+        <p><strong>วัตถุประสงค์:</strong> ใช้สำหรับติดต่อสอบถามข้อมูล หรือเริ่มต้นการจองคิวรับบริการกับทางร้าน</p>
+        <p><strong>วิธีใช้งาน:</strong></p>
+        <ol class="step-list">
+          <li>กดปุ่ม “จองคิว / สอบถามแอดมิน”</li>
+          <li>ระบบจะแสดงข้อความ “จองคิวสอบถาม” ในช่องแชท</li>
+          <li>ลูกค้าสามารถส่งข้อความดังกล่าวเพื่อเริ่มต้นการติดต่อกับแอดมิน</li>
+          <li>แอดมินสามารถให้ข้อมูลและดำเนินการในขั้นตอนที่เกี่ยวข้องกับการจองคิวต่อไป</li>
+        </ol>
+        <p class="note">เหมาะสำหรับ: การสอบถามบริการ สอบถามข้อมูล หรือติดต่อร้านเพื่อจองคิว</p>
+      </div>
+
+      <div class="detail-box">
+        <h3>2. 🎫 บัตรสะสมแต้ม</h3>
+        <p><strong>วัตถุประสงค์:</strong> ใช้สำหรับสะสมแต้มจากการใช้บริการตามเงื่อนไขที่ทางร้านกำหนด</p>
+        <p><strong>วิธีใช้งาน:</strong></p>
+        <ol class="step-list">
+          <li>กดปุ่ม “บัตรสะสมแต้ม”</li>
+          <li>ระบบจะแสดงหน้าบัตรสะสมแต้มของลูกค้าระบบ LINE</li>
+          <li>ลูกค้าสามารถตรวจสอบและสะสมแต้มจากการใช้บริการตามเงื่อนไขของทางร้าน</li>
+          <li>แต้มที่ได้รับสามารถนำไปใช้ตามสิทธิประโยชน์หรือเงื่อนไขที่ร้านกำหนด</li>
+        </ol>
+        <p class="note">หมายเหตุ: การได้รับและการใช้แต้มเป็นไปตามเงื่อนไขของทางร้าน</p>
+      </div>
+
+      <div class="detail-box">
+        <h3>3. 🎟️ คูปองส่วนลด</h3>
+        <p><strong>วัตถุประสงค์:</strong> ใช้สำหรับตรวจสอบคูปองส่วนลดและสิทธิประโยชน์ที่ลูกค้าสามารถนำไปใช้กับบริการของร้าน</p>
+        <p><strong>วิธีใช้งาน:</strong></p>
+        <ol class="step-list">
+          <li>กดปุ่ม “คูปองส่วนลด”</li>
+          <li>ระบบจะแสดงคูปองส่วนลดที่มีให้ลูกค้าตรวจสอบ</li>
+          <li>เลือกคูปองที่ต้องการใช้</li>
+          <li>ตรวจสอบรายละเอียดตามเงื่อนไขของคูปองก่อนใช้งาน</li>
+          <li>นำคูปองไปใช้เป็นส่วนลดตามเงื่อนไขที่ทางร้านกำหนด</li>
+        </ol>
+        <p class="note">หมายเหตุ: คูปองแต่ละรายการอาจมีเงื่อนไข ระยะเวลา และข้อกำหนดในการใช้งานแตกต่างกัน</p>
+      </div>
+
+      <div class="detail-box">
+        <h3>4. 📍 แผนที่ร้าน</h3>
+        <p><strong>วัตถุประสงค์:</strong> ใช้สำหรับดูตำแหน่งของร้านและค้นหาเส้นทางเดินทางมายังร้าน Lumina Electric Air</p>
+        <p><strong>วิธีใช้งาน:</strong></p>
+        <ol class="step-list">
+          <li>กดปุ่ม “แผนที่”</li>
+          <li>ระบบจะนำพาเข้าสู่ Google Maps</li>
+          <li>ตรวจสอบตำแหน่งพิกัดของร้าน</li>
+          <li>กดปุ่ม “ไป” เพื่อเริ่มนำทาง</li>
+          <li>เดินทางตามเส้นทางที่แสดงผลบนแผนที่</li>
+        </ol>
+        <p class="note">ประโยชน์: ช่วยให้ลูกค้าสามารถค้นหาที่ตั้งและเดินทางมายังร้านได้อย่างสะดวกขึ้น</p>
+      </div>
+
+      <div class="detail-box">
+        <h3>5. 🔗 Linktree</h3>
+        <p><strong>วัตถุประสงค์:</strong> ใช้สำหรับรวบรวมช่องทางการติดต่อและช่องทางออนไลน์ต่าง ๆ ของ Lumina Electric Air ไว้ในพื้นที่เดียว</p>
+        <p><strong>วิธีใช้งาน:</strong></p>
+        <ol class="step-list">
+          <li>กดปุ่ม “Linktree”</li>
+          <li>ระบบจะนำไปยังหน้า Linktree ของ Lumina Electric Air</li>
+          <li>เลือกช่องทางที่ต้องการใช้งาน: เบอร์โทร, LINE, Facebook, Instagram, Lumina Application</li>
+        </ol>
+        <p class="note">ประโยชน์: ช่วยให้ลูกค้าสามารถเข้าถึงช่องทางการติดต่อที่ต้องการได้จากหน้าเดียว</p>
+      </div>
+
+      <div class="detail-box">
+        <h3>6. 🌐 คู่มือการใช้งานเว็บไซต์</h3>
+        <p><strong>วัตถุประสงค์:</strong> ใช้สำหรับเข้าถึงเว็บไซต์คู่มือของ Lumina Electric Air เพื่อศึกษาวิธีการใช้งานต่าง ๆ</p>
+        <p><strong>วิธีใช้งาน:</strong></p>
+        <ol class="step-list">
+          <li>กดปุ่ม “คู่มือการใช้งาน”</li>
+          <li>ระบบจะนำพาเข้าสู่เว็บไซต์คู่มือ Lumina</li>
+          <li>เลือกหัวข้อที่ต้องการศึกษา (Rich Menu / Application)</li>
+        </ol>
+        <p class="note">ประโยชน์: ช่วยให้ลูกค้าสามารถอ่านคำแนะนำวิธีใช้งานระบบได้ด้วยตนเอง</p>
+      </div>
+    </div>
+
+    <div class="center-btn" id="p2-bottom">
+      <button class="scroll-btn" onclick="scrollToTop()">⬆️ เลื่อนขึ้นบนสุด</button>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 3 ==================== -->
+  <div id="page3" class="page">
+    <h1>คู่มือการใช้งาน LUMINA APPLICATION</h1>
+    <p class="subtitle">Lumina Application เป็นแอปพลิเคชันสำหรับลูกค้า ที่รวบรวมข้อมูลและบริการด้านเครื่องปรับอากาศไว้ในที่เดียว ช่วยให้ตรวจสอบข้อมูล ติดต่อร้าน ค้นหาแอร์ และดูข้อมูลบ้านได้อย่างสะดวก</p>
+
+    <div class="center-btn">
+      <button class="scroll-btn" onclick="scrollToBottom('page3')">⬇️ เลื่อนลงล่างสุด</button>
+    </div>
+
+    <div class="section-card">
+      <div class="detail-box">
+        <h3>📱 ภาพรวมของแอป</h3>
+        <p>Lumina Application ออกแบบมาเพื่อให้ลูกค้าเข้าถึงข้อมูลและบริการด้านเครื่องปรับอากาศได้ง่ายในแอปเดียว ตั้งแต่การเข้าสู่ระบบ หน้าหลัก ติดต่อแอดมิน ค้นหาและเปรียบเทียบแอร์ ไปจนถึงข้อมูลบ้านและเครื่องปรับอากาศ</p>
+        <p style="color:var(--neon-cyan); margin-top:8px;"><em>“Lumina Electric Air — บริการเรื่องแอร์ที่เข้าใจง่าย สะดวก และเป็นระบบ”</em></p>
+      </div>
+
+      <div class="detail-box">
+        <h3>🔐 การเข้าสู่ระบบ</h3>
+        <p><strong>วิธีใช้งาน:</strong></p>
+        <ol class="step-list">
+          <li>เปิด Lumina Application</li>
+          <li>กรอก ชื่อผู้ใช้ และ รหัสผ่าน</li>
+          <li>กดปุ่ม “เข้าสู่ระบบ”</li>
+          <li>เมื่อสำเร็จ ระบบจะแสดงหน้าหลักพร้อมข้อมูลของผู้ใช้งาน</li>
+        </ol>
+        <p class="note">ช่วยแยกข้อมูลลูกค้าแต่ละราย และเข้าถึงข้อมูลบ้าน/แอร์ของบัญชีนั้นได้</p>
+      </div>
+
+      <div class="detail-box">
+        <h3>🏠 หน้าหลัก</h3>
+        <p>จุดเริ่มต้นของแอป รวบรวมฟังก์ชันที่ใช้บ่อย:</p>
+        <ul class="step-list">
+          <li>บริการยอดนิยม</li>
+          <li>โปรโมชันแนะนำ</li>
+          <li>ภาพรวมบ้านของตน</li>
+          <li>ค้นหาเครื่องปรับอากาศ</li>
+          <li>คำนวณ BTU</li>
+          <li>ติดต่อช่าง/บริการ</li>
+        </ul>
+      </div>
+
+      <div class="detail-box">
+        <h3>💬 คุยกับแอดมิน</h3>
+        <p>ใช้สำหรับสอบถามรายละเอียดบริการ ราคา โปรโมชัน จองคิว หรือแจ้งปัญหาเกี่ยวกับแอร์</p>
+        <ol class="step-list">
+          <li>เข้าเมนู “ติดต่อแอดมิน”</li>
+          <li>พิมพ์ข้อความที่ต้องการ</li>
+          <li>ส่งและรอการตอบกลับ</li>
+        </ol>
+      </div>
+
+      <div class="detail-box">
+        <h3>❄️ เครื่องปรับอากาศ</h3>
+        <p><strong>ค้นหา & กรอง:</strong> ค้นตามแบรนด์ ประเภท BTU ช่วงราคา</p>
+        <p><strong>เปรียบเทียบ:</strong> เลือกได้สูงสุด 2 รุ่น</p>
+        <p><strong>คำนวณ BTU:</strong> กรอกข้อมูลห้องเพื่อดูค่าประมาณเบื้องต้น</p>
+        <p class="note">หมายเหตุ: ผลการคำนวณเป็นค่าประมาณ ควรพิจารณาจากสภาพพื้นที่จริงและคำแนะนำช่าง</p>
+      </div>
+
+      <div class="detail-box">
+        <h3>👤 ข้อมูลผู้ใช้และบ้าน</h3>
+        <p>แสดงข้อมูลส่วนตัว บ้าน และเครื่องปรับอากาศที่ผูกกับบัญชี สามารถเลือกบ้านเพื่อดูรายละเอียดแอร์ในบ้านนั้นได้จากจุดเดียว</p>
+      </div>
+    </div>
+
+    <div class="center-btn" id="p3-bottom">
+      <button class="scroll-btn" onclick="scrollToTop()">⬆️ เลื่อนขึ้นบนสุด</button>
+    </div>
+  </div>
+
+  <script>
+    function switchPage(pageId, btn) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function scrollToBottom(pageId) {
+      const shortId = pageId.replace('page', 'p');
+      const target = document.getElementById(shortId + '-bottom') || document.getElementById(pageId);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
